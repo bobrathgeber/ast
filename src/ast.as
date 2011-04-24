@@ -18,10 +18,15 @@
 		//public var _stage:Stage;
 
 		public function ast() {
-			//_stage= this.Stage;
+			var newAsteroid:asteroid = new asteroid();
+			var newAsteroid1:asteroid = new asteroid();
+			var newAsteroid2:asteroid = new asteroid();
+			
+			stage.addChild(newAsteroid);
+			stage.addChild(newAsteroid1);
+			stage.addChild(newAsteroid2);
 			stage.addChild(_ship);
 			shipControl();
-			trace(_ship.rotation);
 			_ship.rotation=90;
 
 			_ship.x=100;
@@ -82,17 +87,13 @@
 			}
 			if (SpaceBar) {
 				_ship.fireMissile();
-				trace("space bar down");
 			}
-
-
 
 			_ship.tic();
 			wrap();
 		}
 
 		function wrap() {
-			trace(stage.numChildren);
 			for (var i:int = 0; i < stage.numChildren; i++) {
 				var c:DisplayObject=stage.getChildAt(i);
 

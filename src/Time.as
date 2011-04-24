@@ -3,9 +3,9 @@
 	import flash.events.Event;
 	import flash.utils.getTimer;
 
-	public class Time extends Sprite {
-
-		static private var _instance:Timer = new Time();
+public class Time extends Sprite {
+		
+		static private var _instance:Time = new Time();
 		static private var _currentTime:int;
 		static private var _previousTime:int;
 

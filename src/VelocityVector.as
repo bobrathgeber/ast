@@ -10,6 +10,5 @@
 			ang = angle;
 			mag = magnitude;
 		}
-		
 	}
 }
