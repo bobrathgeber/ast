@@ -14,7 +14,7 @@
 		
 		function missile(v:VelocityVector) {
 			_distanceTraveled = 0;
-			_maxDistance = 10;
+			_maxDistance = 15;
 			addEventListener(Event.ENTER_FRAME, tic);
 			_v = v;
 			_dX=Math.sin(v.ang*Math.PI/180)*v.mag;
