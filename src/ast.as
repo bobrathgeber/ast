@@ -74,10 +74,10 @@
 		public function tic(e:Event) {
 			//Rotate Ship
 			if (LeftArrow) {
-				_ship.turn(-10);
+				_ship.turn(-7);
 			}
 			if (RightArrow) {
-				_ship.turn(10);
+				_ship.turn(7);
 			}
 			if (UpArrow) {
 				_ship.accelerate();

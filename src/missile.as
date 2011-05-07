@@ -11,8 +11,10 @@
 		//movement pattern
 		private var _dX:Number;
 		private var _dY:Number;
+		private var _gun:gun;
 		
-		function missile(v:VelocityVector) {
+		function missile(v:VelocityVector, thisGun:gun) {
+			_gun = thisGun;
 			_distanceTraveled = 0;
 			_maxDistance = 15;
 			addEventListener(Event.ENTER_FRAME, tic);
@@ -28,6 +30,7 @@
 			//trace(distance + " " + _maxDistance);
 			if (_distanceTraveled >= _maxDistance) {
 				stage.removeChild(this);
+				_gun.reduceMissileCount();
 				removeEventListener(Event.ENTER_FRAME, tic);
 			}
 			x+=_dX;
