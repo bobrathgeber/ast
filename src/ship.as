@@ -5,23 +5,31 @@
 	public class ship extends Entity {
 
 		private var _max_velocity:Number;
-		private var _dX:Number;
-		private var _dY:Number;
+		private var _v:PolarVector;
 		private var _gunArray:Array = new Array();
 		private var _accelMultiplier:Number;
 
 		public function ship() {
+			addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
+		}
+		
+		public function addedToStage(e:Event) {
+			makeShip();
+			removeEventListener(Event.ADDED_TO_STAGE, addedToStage);
+		}
+		
+		public function makeShip(){
 			_accelMultiplier = 0.5;
 			_max_velocity=8;
-			_dX=0;
-			_dY=0;
-			mountGun(10,0,10);
-			mountGun(-10,0,-10);
+			_v = new PolarVector(0,0);
+			mountGun(10,0,20);
+			mountGun(-10,0,-20);
 			mountGun(0,0,0);
+			mountGun(0,10,180);
 		}
 
 		public function mountGun(X:int, Y:int, R:int) {
-			var newGun:gun=new gun(this.rotation);
+			var newGun:gun=new gun(R);
 			_gunArray.push(newGun);
 			addChild(newGun);
 			newGun.rotation = R;
@@ -33,28 +41,39 @@
 		function turn(degrees:int) {
 			this.rotation+=degrees;
 			for each (var g:gun in _gunArray) {
-				g.ang=this.rotation;
+				g.ang+=degrees;
 			}
 		}
 
 		function moveShip() {
-			this.x+=_dX;
-			this.y+=_dY;
+			this.x+=_v.x;
+			this.y+=_v.y;
+			
+						trace("**********");
+			
+			trace("x " + _v.x);
+			trace("y " + _v.y);
+			trace("r " + _v.r);
+			trace("k " + _v.k);
+		}
+		
+		function stopShip() {
+			this._v = new PolarVector(0,0);
+			trace(Math.atan2(3,4)*180/Math.PI);
+			
 		}
 
 		function accelerate() {
-			var newXAccel:Number=Math.sin(this.rotation*Math.PI/180) * _accelMultiplier;
-			var newYAccel:Number=Math.cos(this.rotation*Math.PI/180)*-1 * _accelMultiplier;
+			var a:PolarVector = new PolarVector(this.rotation, _accelMultiplier);
+			var old:PolarVector = _v;
 			
-			if (Math.abs(_dX+newXAccel) < _max_velocity) {
-				_dX+=newXAccel;
+			_v.add(a);
+			
+			if (_v.k > _max_velocity) {
+				_v.k = _max_velocity;
 			}
-			if (Math.abs(_dY+newYAccel) < _max_velocity) {
-				_dY+=newYAccel;
-			}
-			//_dX = Math.min(_dX, _max_velocity);
-			//_dY = Math.min(_dY, _max_velocity);
 		}
+		
 		function tic():void {
 			moveShip();
 		}

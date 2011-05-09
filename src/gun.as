@@ -23,7 +23,7 @@
 
 		function fire() {
 			if (! _cooldown && (_missile_count < _max_missiles)) {
-				var newMissile:missile=new missile(new VelocityVector(ang,_speed), this);
+				var newMissile:missile=new missile(new PolarVector(ang,_speed), this);
 				var abs:Point=parent.localToGlobal(new Point(this.x,this.y));
 				newMissile.x=abs.x;
 				newMissile.y=abs.y;

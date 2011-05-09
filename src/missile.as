@@ -4,28 +4,24 @@
 	import flash.utils.Timer;
 	
 	public class missile extends Entity {
-		private var _v:VelocityVector;
+		private var _v:PolarVector;
 		private var _damage:Number;
 		private var _distanceTraveled:Number;
 		private var _maxDistance:Number;
 		//movement pattern
-		private var _dX:Number;
-		private var _dY:Number;
 		private var _gun:gun;
 		
-		function missile(v:VelocityVector, thisGun:gun) {
+		function missile(v:PolarVector, thisGun:gun) {
 			_gun = thisGun;
 			_distanceTraveled = 0;
 			_maxDistance = 15;
 			addEventListener(Event.ENTER_FRAME, tic);
 			_v = v;
-			_dX=Math.sin(v.ang*Math.PI/180)*v.mag;
-			_dY=Math.cos(v.ang*Math.PI/180)*v.mag*-1;
 		}
 		 
 		function tic(e:Event){
 			//trace("missleX:" + _dX);
-			_distanceTraveled += Time.deltaTime * _v.mag;
+			_distanceTraveled += Time.deltaTime * _v.k;
 
 			//trace(distance + " " + _maxDistance);
 			if (_distanceTraveled >= _maxDistance) {
@@ -33,8 +29,8 @@
 				_gun.reduceMissileCount();
 				removeEventListener(Event.ENTER_FRAME, tic);
 			}
-			x+=_dX;
-			y+=_dY;
+			x+=_v.x;
+			y+=_v.y;
 		}
 	}
 }

@@ -1,14 +1,14 @@
 ﻿package{
-	public class VelocityVector {
+	public class Velocity {
 		
 		// props
-		public var ang:Number;
-		public var mag:Number;
+		private var _v:Vector3D;
+		private var _r:Number;
+		private var _k:Number;
 		
 		// ctor
-		public function VelocityVector(angle:Number, magnitude:Number) {
-			ang = angle;
-			mag = magnitude;
-		}
+		public function Velocity(r:Number, k:Number) {
+			_v.add(
+		}		
 	}
 }

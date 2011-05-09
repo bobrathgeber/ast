@@ -20,6 +20,7 @@ public class Time extends Sprite {
 		private function updateTime(eEvent):void {
 			_previousTime=_currentTime;
 			_currentTime=getTimer();
+			//trace(deltaTime);
 		}
 
 		static public function get deltaTime():Number {

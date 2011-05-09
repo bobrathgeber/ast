@@ -18,6 +18,15 @@
 		//public var _stage:Stage;
 
 		public function ast() {
+			addEventListener(Event.ADDED_TO_STAGE, addedToStage, false, 0, true);
+		}
+		
+		public function addedToStage(e:Event) {
+			startGame();
+			removeEventListener(Event.ADDED_TO_STAGE, addedToStage);
+		}
+		
+		public function startGame(){
 			var newAsteroid:asteroid = new asteroid();
 			var newAsteroid1:asteroid = new asteroid();
 			var newAsteroid2:asteroid = new asteroid();
@@ -27,11 +36,9 @@
 			stage.addChild(newAsteroid2);
 			stage.addChild(_ship);
 			shipControl();
-			_ship.rotation=90;
 
 			_ship.x=100;
 			_ship.y=100;
-
 		}
 		function handleKeyPress(event:KeyboardEvent) {
 
@@ -83,7 +90,7 @@
 				_ship.accelerate();
 			}
 			if (DownArrow) {
-
+				_ship.stopShip();
 			}
 			if (SpaceBar) {
 				_ship.fireMissile();

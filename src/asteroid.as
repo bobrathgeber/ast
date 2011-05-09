@@ -5,7 +5,7 @@
 	
 	public class asteroid extends MovieClip {
 		private var _spin:Number;
-		private var _velocity:Number
+		private var _velocity:Number;
 		private var _dX:Number;
 		private var _dY:Number;
 		
