@@ -22,10 +22,10 @@
 			_accelMultiplier = 0.5;
 			_max_velocity=8;
 			_v = new PolarVector(0,0);
-			mountGun(10,0,20);
-			mountGun(-10,0,-20);
-			mountGun(0,0,0);
-			mountGun(0,10,180);
+			mountGun(12,-20,20);
+			mountGun(-12,-20,-20);
+			mountGun(0,-20,0);
+			mountGun(0,20,180);
 		}
 
 		public function mountGun(X:int, Y:int, R:int) {
@@ -68,7 +68,6 @@
 			var old:PolarVector = _v;
 			
 			_v.add(a);
-			
 			if (_v.k > _max_velocity) {
 				_v.k = _max_velocity;
 			}

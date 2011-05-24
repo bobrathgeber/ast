@@ -17,7 +17,7 @@
 			_missile_count = 0;
 			_max_missiles = 6;
 			_speed=5;
-			_interval=100;
+			_interval=300;
 			ang=angle;
 		}
 
